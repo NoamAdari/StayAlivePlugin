@@ -1,0 +1,16 @@
+name: StayAlive
+version: '${project.version}'
+main: art.kadawi.stayalive.StayAlive
+api-version: 1.19
+authors: [ Kadawi ]
+description: When you die you get ban for amount of time but! every time you die the timer go up!
+commands:
+  clearDeaths:
+    description: Set your deaths to 0
+    usage: /<ClearDeaths>
+  removeDeaths:
+    description: remove some of your deaths
+    usage: /<RemoveDeaths>
+  setBanTime:
+    description: set the new duration of the ban
+    usage: /<setBanTimes>
