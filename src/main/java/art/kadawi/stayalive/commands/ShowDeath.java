@@ -40,9 +40,10 @@ public class ShowDeath implements CommandExecutor {
         BukkitTask task = new BukkitRunnable() {
             @Override
             public void run() {
-                if (p.isOnline()) {
-                    int statistic = p.getStatistic(Statistic.DEATHS);
-                    p.sendActionBar("your deaths - " + statistic);
+                Player target = Bukkit.getPlayer(p.getUniqueId());
+                if (target != null) {
+                    int statistic = target.getStatistic(Statistic.DEATHS);
+                    target.sendActionBar("your deaths - " + statistic);
                 }
             }
         }.runTaskTimer(StayAlive.instance, 5, 5);
