@@ -2,6 +2,7 @@ package art.kadawi.stayalive.commands;
 
 import com.google.common.eventbus.DeadEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import org.bukkit.command.Command;
@@ -23,6 +24,7 @@ public class ClearDeathCommand implements CommandExecutor {
                     if(t == null)
                         return true;
                     t.setStatistic(Statistic.DEATHS, 0);
+                    p.sendMessage(ChatColor.GREEN + " למשתמש " + t.getName() + " ירד הבאנים! ");
                 }
             }
         }

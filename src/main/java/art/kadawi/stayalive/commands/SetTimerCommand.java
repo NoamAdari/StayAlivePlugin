@@ -3,6 +3,7 @@ package art.kadawi.stayalive.commands;
 import org.bukkit.BanEntry;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,6 +29,7 @@ public class SetTimerCommand implements CommandExecutor {
                     if(banEntry == null)
                         return true;
                     banEntry.setExpiration(new Date(minutes));
+                    p.sendMessage(ChatColor.GREEN +  "המשתמש " + banEntry +  "קיבל באן ל "+ amount);
                     banEntry.save();
                 }
             }
