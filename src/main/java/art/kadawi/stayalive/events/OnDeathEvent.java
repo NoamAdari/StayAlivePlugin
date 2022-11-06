@@ -1,12 +1,15 @@
 package art.kadawi.stayalive.events;
 
 import art.kadawi.stayalive.StayAlive;
+import art.kadawi.stayalive.commands.ShowDeath;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.Date;
 
@@ -70,5 +73,14 @@ public class OnDeathEvent implements Listener {
 
             }
         });
+    }
+
+    private final NamespacedKey SHOWING_DEATHS = new NamespacedKey(StayAlive.instance, "showing_deaths");
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        if (event.getPlayer().getPersistentDataContainer().has(SHOWING_DEATHS)) {
+            ShowDeath.showDeaths(event.getPlayer());
+        }
     }
 }
