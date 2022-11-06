@@ -14,3 +14,6 @@ commands:
   setBanTime:
     description: set the new duration of the ban
     usage: /<setBanTimes>
+  ShowDeaths:
+    description: Show your deaths
+    usage: /<ShowDeaths>

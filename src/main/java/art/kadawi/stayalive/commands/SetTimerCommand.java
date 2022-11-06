@@ -29,7 +29,7 @@ public class SetTimerCommand implements CommandExecutor {
                     if(banEntry == null)
                         return true;
                     banEntry.setExpiration(new Date(minutes));
-                    p.sendMessage(ChatColor.GREEN +  "המשתמש " + banEntry +  "קיבל באן ל "+ amount);
+                    p.sendMessage(ChatColor.GREEN +  "המשתמש " + ChatColor.BOLD +  args[0] + ChatColor.RESET + ChatColor.GREEN +  " קיבל באן ל "+ amount + " דקות! ");
                     banEntry.save();
                 }
             }

@@ -23,7 +23,7 @@ public class RemoveDeathsCommand implements CommandExecutor {
                     if(newAmount >= 0){
                             members.setStatistic(Statistic.DEATHS , newAmount);
                             p.sendMessage(ChatColor.GREEN +  "למשתמש " +
-                                    ChatColor.BOLD + members.getName() + ChatColor.RESET + "" + ChatColor.GREEN + " ירד " + amount + " באנים " );
+                                    ChatColor.BOLD + members.getName() + ChatColor.RESET + "" + ChatColor.GREEN + " ירד " + amount + " באנים! " );
                         }
                         else
                         {

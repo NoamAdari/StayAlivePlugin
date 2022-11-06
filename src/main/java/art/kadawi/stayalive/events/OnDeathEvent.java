@@ -47,7 +47,7 @@ public class OnDeathEvent implements Listener {
                 case 4:
                     timeDate = timeDate + 7200000;
                     date = new Date(timeDate);
-                    p.banPlayer("אתה בבאן לשעתים" , date);
+                    p.banPlayer("אתה בבאן לשעתיים" , date);
                     break;
                 case 5:
                     timeDate = timeDate + 14400000;

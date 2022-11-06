@@ -43,7 +43,7 @@ public class ShowDeath implements CommandExecutor {
                 Player target = Bukkit.getPlayer(p.getUniqueId());
                 if (target != null) {
                     int statistic = target.getStatistic(Statistic.DEATHS);
-                    target.sendActionBar("your deaths - " + statistic);
+                    target.sendActionBar("Your Deaths - " + statistic);
                 }
             }
         }.runTaskTimer(StayAlive.instance, 5, 5);

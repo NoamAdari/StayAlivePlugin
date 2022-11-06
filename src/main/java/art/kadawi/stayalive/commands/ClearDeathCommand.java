@@ -24,7 +24,7 @@ public class ClearDeathCommand implements CommandExecutor {
                     if(t == null)
                         return true;
                     t.setStatistic(Statistic.DEATHS, 0);
-                    p.sendMessage(ChatColor.GREEN + " למשתמש " + t.getName() + " ירד הבאנים! ");
+                    p.sendMessage(ChatColor.GREEN + " למשתמש " + ChatColor.BOLD + t.getName() + ChatColor.RESET + ChatColor.GREEN + " ירד הבאנים! ");
                 }
             }
         }
