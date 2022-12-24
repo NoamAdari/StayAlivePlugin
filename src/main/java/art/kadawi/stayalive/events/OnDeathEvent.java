@@ -12,10 +12,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.Date;
-
 public class OnDeathEvent implements Listener {
-
-
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         int statistic = event.getPlayer().getStatistic(Statistic.DEATHS);
@@ -23,7 +20,7 @@ public class OnDeathEvent implements Listener {
         Bukkit.getScheduler().runTask(StayAlive.instance , ()-> {
             long timeDate = System.currentTimeMillis();
 
-            switch (statistic){
+            switch (statistic) {
                 case 0:
                     timeDate = timeDate + 300000;
                     Date date = new Date(timeDate);
@@ -72,6 +69,7 @@ public class OnDeathEvent implements Listener {
 
 
             }
+
         });
     }
 
