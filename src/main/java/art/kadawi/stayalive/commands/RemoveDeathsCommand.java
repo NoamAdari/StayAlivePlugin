@@ -13,25 +13,18 @@ public class RemoveDeathsCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (sender instanceof Player) {
-            Player p = (Player) sender;
-            if (p.isOp()) {
-                if(args.length == 2){
-                    Player members = Bukkit.getPlayer(args[0]);
-                    int amount = Integer.parseInt(args[1]);
-                    int newAmount = members.getStatistic(Statistic.DEATHS) - amount;
-                    if(newAmount >= 0){
-                            members.setStatistic(Statistic.DEATHS , newAmount);
-                            p.sendMessage(ChatColor.GREEN +  "למשתמש " +
-                                    ChatColor.BOLD + members.getName() + ChatColor.RESET + "" + ChatColor.GREEN + " ירד " + amount + " באנים! " );
-                        }
-                        else
-                        {
-                           p.sendMessage(ChatColor.RED + "אתה לא יכול לעשות את זה!");
-                        }
-                }
-            }
+        if (args.length != 2) return false;
+        if (!(sender instanceof Player p) || !p.isOp()) return true;
+        Player members = Bukkit.getPlayer(args[0]);
+        int amount = Integer.parseInt(args[1]);
+        int newAmount = members.getStatistic(Statistic.DEATHS) - amount;
+        if (newAmount < 0) {
+            p.sendMessage(ChatColor.RED + "אתה לא יכול לעשות את זה!");
+            return true;
         }
+        members.setStatistic(Statistic.DEATHS , newAmount);
+        p.sendMessage(ChatColor.GREEN +  "למשתמש " +
+                ChatColor.BOLD + members.getName() + ChatColor.RESET + "" + ChatColor.GREEN + " ירד " + amount + " באנים! " );
         return true;
     }
 }

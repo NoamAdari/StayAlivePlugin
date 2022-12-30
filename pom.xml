@@ -13,7 +13,7 @@
 
     <description>When you die you get ban for amount of time but! every time you die the timer go up!</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

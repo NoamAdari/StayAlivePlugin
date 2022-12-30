@@ -22,15 +22,13 @@ public class ShowDeath implements CommandExecutor {
     private final NamespacedKey SHOWING_DEATHS = new NamespacedKey(StayAlive.instance, "showing_deaths");
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (sender instanceof Player){
-            Player p = (Player) sender;
-            if (tasks.containsKey(p.getUniqueId())) {
-                tasks.remove(p.getUniqueId()).cancel();
-                p.getPersistentDataContainer().remove(SHOWING_DEATHS);
-            } else {
-                showDeaths(p);
-                p.getPersistentDataContainer().set(SHOWING_DEATHS, PersistentDataType.BYTE, (byte)1);
-            }
+        if (!(sender instanceof Player p)) return true;
+        if (tasks.containsKey(p.getUniqueId())) {
+            tasks.remove(p.getUniqueId()).cancel();
+            p.getPersistentDataContainer().remove(SHOWING_DEATHS);
+        } else {
+            showDeaths(p);
+            p.getPersistentDataContainer().set(SHOWING_DEATHS, PersistentDataType.BYTE, (byte)1);
         }
         return true;
     }

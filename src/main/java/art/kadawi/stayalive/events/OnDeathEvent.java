@@ -2,6 +2,7 @@ package art.kadawi.stayalive.events;
 
 import art.kadawi.stayalive.StayAlive;
 import art.kadawi.stayalive.commands.ShowDeath;
+import art.kadawi.stayalive.duration.DurationFormat;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Statistic;
@@ -13,63 +14,21 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.Date;
 public class OnDeathEvent implements Listener {
+    private static final int[] banDurations = {5, 15, 30, 60, 120, 240, 480, 720, 1440};
+    private static final DurationFormat durationFormat = new DurationFormat();
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         int statistic = event.getPlayer().getStatistic(Statistic.DEATHS);
         Player p = event.getPlayer();
         Bukkit.getScheduler().runTask(StayAlive.instance , ()-> {
-            long timeDate = System.currentTimeMillis();
+            int minutes = statistic >= banDurations.length ? banDurations[banDurations.length - 1] : banDurations[statistic];
+            long duration = minutes * 60000;
+            long timeDate = System.currentTimeMillis() + duration;
 
-            switch (statistic) {
-                case 0:
-                    timeDate = timeDate + 300000;
-                    Date date = new Date(timeDate);
-                    p.banPlayer("אתה בבאן ל5 דקות" , date);
-                        break;
-                case 1:
-                    timeDate = timeDate + 900000;
-                    date = new Date(timeDate);
-                    p.banPlayer("אתה בבאן ל15 דקות" , date);
-                        break;
-                case 2:
-                    timeDate = timeDate + 1800000;
-                    date = new Date(timeDate);
-                    p.banPlayer("אתה בבאן ל30 דקות" , date);
-                    break;
-                case 3:
-                    timeDate = timeDate + 3600000;
-                    date = new Date(timeDate);
-                    p.banPlayer("אתה בבאן לשעה" , date);
-                    break;
-                case 4:
-                    timeDate = timeDate + 7200000;
-                    date = new Date(timeDate);
-                    p.banPlayer("אתה בבאן לשעתיים" , date);
-                    break;
-                case 5:
-                    timeDate = timeDate + 14400000;
-                    date = new Date(timeDate);
-                    p.banPlayer("אתה בבאן ל4 שעות " , date);
-                    break;
-                case 6:
-                    timeDate = timeDate + 28800000;
-                    date = new Date(timeDate);
-                    p.banPlayer("אתה בבאן ל8 שעות " , date);
-                    break;
-                case 7:
-                    timeDate = timeDate + 43200000;
-                    date = new Date(timeDate);
-                    p.banPlayer("אתה בבאן ל12 שעות " , date);
-                    break;
-                case 8:
-                    timeDate = timeDate + 86400000;
-                    date = new Date(timeDate);
-                    p.banPlayer("אתה בבאן ל24 שעות " , date);
-                    break;
+            String durString = durationFormat.format(duration, false);
 
-
-            }
-
+            Date date = new Date(timeDate);
+            p.banPlayer("אתה בבאן ל" + durString , date);
         });
     }
 
